@@ -9,7 +9,7 @@ const database = new Neo4JConnection();
 
 database.connect();
 
-app.use(cors());
+app.use(cors({ origin: '*' }));
 app.use(express.json());
 app.use('/api/users', routes(database));
 
