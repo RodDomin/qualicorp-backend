@@ -12,7 +12,7 @@ export class JoiValidator implements Validator {
     const returned = this.schema.validate(data);
 
     if (returned.error) {
-      return Maybe.withData(new ValidationError());
+      return Maybe.withData(new ValidationError(returned.error));
     }
 
     return Maybe.withoutData() as Maybe<ValidationError>;

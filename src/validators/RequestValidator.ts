@@ -13,9 +13,7 @@ export class RequestValidator {
     const maybeError = this.validator.validate(field);
 
     if (maybeError.retuned()) {
-      return response.status(400).json({
-        errros: maybeError.get(),
-      });
+      return response.status(400).json(maybeError.get());
     }
 
     return next();

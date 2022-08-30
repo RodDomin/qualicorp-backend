@@ -12,6 +12,12 @@ export class UserController {
     )
   }
 
+  async find(request: Request, response: Response) {
+    return response.json(
+      await this.repository.findOne(request.params.id),
+    );
+  }
+
   async edit(request: Request, response: Response) {
     return response.json(await this.repository.save({
       id: request.params.id,
@@ -26,7 +32,7 @@ export class UserController {
   }
 
   async delete(request: Request, response: Response) {
-    await this.repository.delete(Number(request.params.id))
+    await this.repository.delete(request.params.id)
     
     return response
       .status(204)

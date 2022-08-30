@@ -11,19 +11,20 @@ export class Neo4JConnection implements Connection {
       databaseConfig.URL,
       neo4j.auth.basic(databaseConfig.USER, databaseConfig.PASS)
     );
-
-    this.session = this.driver.session({
-      database: databaseConfig.DATABASE,
-    });
   }
 
   async close() {
-    await this.session.close();
     await this.driver.close();
   }
 
   async query<T>(query: string) {
+    this.session = this.driver.session({
+      database: databaseConfig.DATABASE,
+    });
+
     const result = await this.session.run(query);
+
+    await this.session.close();
 
     return result
       .records
