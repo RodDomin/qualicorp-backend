@@ -9,10 +9,7 @@ const database = new Neo4JConnection();
 
 database.connect();
 
-app.use(cors({
-    origin: "https://qualicorp-challenge-front.herokuapp.com/", 
-    credentials: true,
-}))
+app.use(cors());
 app.use(express.json());
 app.use('/api/users', routes(database));
 
