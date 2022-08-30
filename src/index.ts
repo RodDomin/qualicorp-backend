@@ -11,7 +11,7 @@ database.connect();
 
 app.use(cors());
 app.use(express.json());
-app.use('/users', routes(database));
+app.use('/api/users', routes(database));
 
 const port = process.env.PORT ?? 3333;
 
